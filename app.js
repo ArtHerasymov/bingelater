@@ -2,9 +2,24 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const users = require('./routes/users')
+const mongoose = require('mongoose')
+const config = require('./config/database')
+const cors = require('cors')
+
+mongoose.connect(config.database)
+
+mongoose.connection.on('connected' , () => {
+  console.log('Connected to database' + config.database)
+})
+
+mongoose.connection.on('error' , () => {
+  console.log('Database error : ' + err)
+})
+
 
 const app = express()
 app.use(bodyParser.json())
+app.use(cors())
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin" , "*")
