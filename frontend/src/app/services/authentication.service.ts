@@ -13,7 +13,7 @@ export class AuthenticationService {
     let headers = new Headers()
     headers.append('Content-Type' , 'application/json')
     console.log("in")
-    return this.http.get('http://localhost:3000/users/register', user, {headers:headers})
+    return this.http.get('http://localhost:3000/users/register', {headers:headers})
       .map(res => res.json())
   }
 
