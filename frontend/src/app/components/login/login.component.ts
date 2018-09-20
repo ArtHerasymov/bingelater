@@ -8,6 +8,9 @@ import { AuthenticationService } from '../../services/authentication.service'
 })
 export class LoginComponent implements OnInit {
 
+  username: String
+  password: String
+
   constructor(
     private authenticationService : AuthenticationService
   ) { }
@@ -16,7 +19,14 @@ export class LoginComponent implements OnInit {
   }
 
   testBackend() {
-    this.authenticationService.registerUser(1).subscribe(data => {
+
+    const user = {
+      username: this.username,
+      password: this.password
+    }
+
+
+    this.authenticationService.registerUser(user).subscribe(data => {
       if(data.success){
         console.log("Success")
       } else {

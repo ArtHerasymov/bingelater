@@ -6,6 +6,8 @@ import { LoginComponent } from './components/login/login.component';
 
 import { AuthenticationService } from './services/authentication.service'
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -21,7 +23,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]

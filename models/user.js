@@ -15,3 +15,10 @@ const UserSchema = mongoose.Schema({
     default: []
   },
 })
+
+const User = module.exports = mongoose.model('User', UserSchema)
+
+
+module.exports.addUser = function(user, callback) {
+  user.save(callback)
+}
