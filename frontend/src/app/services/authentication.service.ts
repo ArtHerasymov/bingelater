@@ -12,7 +12,6 @@ export class AuthenticationService {
   registerUser(user){
     let headers = new Headers()
     headers.append('Content-Type' , 'application/json')
-    console.log("in")
     return this.http.post('http://localhost:3000/users/register',user, {headers:headers})
       .map(res => res.json())
   }
