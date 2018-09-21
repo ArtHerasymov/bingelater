@@ -4,6 +4,7 @@ const User = require('../models/user')
 const Post = require('../models/post')
 const jwt = require('jsonwebtoken')
 const config = require('../config/database')
+const passport = require('passport')
 
 router.post('/register' , (req, res, next)=>{
 
@@ -54,7 +55,7 @@ router.post('/login' , (req, res, next) => {
   })
 })
 
-router.get('/getRecommendations/:user' , (req, res, next) => {
+router.get('/getRecommendations/:user', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   Post.getPosts(req.params.id, (err, posts) => {
     if(err) res.json({success:false})
     else res.json({success:true, posts: posts})

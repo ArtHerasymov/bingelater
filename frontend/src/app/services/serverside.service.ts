@@ -10,11 +10,9 @@ export class ServersideService {
   constructor(private http: Http) { }
 
   getRecommendations(){
-    let headers = Headers()
+    let headers = new Headers()
     headers.append('Content-Type' , 'application/json')
-    return this.http.get('http://localhost:3000/getRecommendations/1', {heeaders:headers})
+    return this.http.get('http://localhost:3000/getRecommendations/1', {headers:headers})
       .map(res => res.json())
   }
-
-
 }

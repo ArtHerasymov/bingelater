@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -12,26 +13,42 @@ export class LoginComponent implements OnInit {
   password: String
 
   constructor(
-    private authenticationService : AuthenticationService
+    private authenticationService : AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
-  testBackend() {
-
+  registerUser() {
     const user = {
       username: this.username,
       password: this.password
     }
-
-
     this.authenticationService.registerUser(user).subscribe(data => {
-      if(data.success){
-        console.log("Success")
+      if(data.success) {
+        this.router.navigate(['/dashboard'])
       } else {
-        console.log("Failure")
+        console.log('Error')
       }
     })
   }
+
+  loginUser() {
+      const user = {
+        username: this.username,
+        password: this.password
+      }
+      this.authenticationService.loginUser(user)
+        .subscribe(data => {
+          if(data.success){
+            this.authenticationService.storeUserData(data.token, data.user)
+            this.router.navigate(['/dashboard'])
+          } else {
+            this.router.navigate([''])
+          }
+        })
+
+  }
+
 }
