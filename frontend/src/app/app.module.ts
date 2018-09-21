@@ -10,10 +10,11 @@ import { FormsModule } from '@angular/forms';
 
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {AuthGuard} from './guards/auth.guard'
 
 const appRoutes: Routes = [
   { path: '' , component: LoginComponent},
-  { path: 'dashboard' , component: DashboardComponent}
+  { path: 'dashboard' , component: DashboardComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

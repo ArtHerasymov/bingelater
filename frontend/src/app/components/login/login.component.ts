@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     }
     this.authenticationService.registerUser(user).subscribe(data => {
       if(data.success) {
-        this.router.navigate(['/dashboard'])
+        this.router.navigate([''])
       } else {
         console.log('Error')
       }
@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         username: this.username,
         password: this.password
       }
+
       this.authenticationService.loginUser(user)
         .subscribe(data => {
           if(data.success){
