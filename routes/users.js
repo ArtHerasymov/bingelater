@@ -99,6 +99,13 @@ router.get('/getByAdvisor/:advisor', (req, res, next) => {
   })
 })
 
+router.get('/updateStatus/:id', (req, res, next) => {
+  Post.updateStatus(req.params.id , (err, posts) => {
+    if(err) res.json({success:false, msg: err})
+    else res.json({success:true})
+  })
+})
+
 router.get('/removeById/:id', (req, res, next) => {
   Post.removePost(req.params.id, (err, posts) => {
     if(err) res.json({success:false, message: err})

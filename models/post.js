@@ -13,6 +13,10 @@ const PostSchema = mongoose.Schema({
   cover: {
     type: String
   },
+  status: {
+    type: String,
+    default: "Pending"
+  },
   advisor: {
     type: String,
     required: true,
@@ -33,6 +37,10 @@ module.exports.addPost = function(post, callback) {
 
 module.exports.getAllPosts = function(callback) {
   Post.find({}, callback)
+}
+
+module.exports.updateStatus = function(id, callback){
+  Post.findByIdAndUpdate(id, {"status":"Seen"}, callback)
 }
 
 module.exports.getPostsByAdvisor = function(advisor, callback){
