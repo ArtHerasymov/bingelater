@@ -38,3 +38,7 @@ module.exports.getAllPosts = function(callback) {
 module.exports.getPostsByAdvisor = function(advisor, callback){
   Post.find({"advisor": advisor} , callback)
 }
+
+module.exports.removePost = function(id, callback){
+  Post.remove({_id: id}, callback)
+}

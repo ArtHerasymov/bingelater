@@ -4,6 +4,7 @@
       <div class="card">
         <div class="card-header">
           <a (click)="onAdvisorRequested(post.advisor)">{{post.advisor}}</a>
+          <button (click)="onRemoveRecommendation(post._id)">Remove</button>
         </div>
         <div class="card-body">
           <blockquote class="blockquote mb-0">

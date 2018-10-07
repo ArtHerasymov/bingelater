@@ -99,4 +99,11 @@ router.get('/getByAdvisor/:advisor', (req, res, next) => {
   })
 })
 
+router.get('/removeById/:id', (req, res, next) => {
+  Post.removePost(req.params.id, (err, posts) => {
+    if(err) res.json({success:false, message: err})
+    else res.json({success:true, id: req.params.id})
+  })
+})
+
 module.exports = router

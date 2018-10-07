@@ -38,6 +38,18 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  onRemoveRecommendation(id){
+    this.dataArrivalFlag = false
+    this.serverService.removeRecommendation(id).subscribe(res => {
+      if(res.success == true){
+        this.posts = this.posts.filter(function( obj ) {
+          return obj._id !== id;
+        })
+      }
+      this.dataArrivalFlag = true
+    })
+  }
+
   logout(){
     this.authService.logout()
     this.router.navigate(['/'])

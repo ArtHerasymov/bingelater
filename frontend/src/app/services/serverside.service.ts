@@ -19,10 +19,17 @@ export class ServersideService {
   }
 
   getRecsByAdvisor(advisor){
-    console.log('ss in : ' + advisor)
     let headers = new Headers()
     headers.append('Content-Type', 'application/json')
     return this.http.get('http://localhost:3001/users/getByAdvisor/'+ advisor, {headers:headers})
       .map(res => res.json())
   }
+
+  removeRecommendation(id){
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.get('http://localhost:3001/users/removeById/'+ id, {headers: headers})
+      .map(res => res.json())
+  }
+
 }
