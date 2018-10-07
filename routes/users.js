@@ -18,6 +18,11 @@ router.post('/register' , (req, res, next)=>{
   })
 })
 
+router.get('/profile',passport.authenticate('jwt', { session: false }), (req, res, next) =>{
+  res.json({user: req.user})
+} )
+
+
 router.post('/authenticate', (req, res, next) => {
 
   console.log(req.body)
@@ -58,10 +63,39 @@ router.post('/login' , (req, res, next) => {
   })
 })
 
-router.get('/getRecommendations/:user', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-  Post.getPosts(req.params.id, (err, posts) => {
+router.get('/getRecommendations/:user', (req, res, next) => {
+  Post.getPosts(req.params.user, (err, posts) => {
     if(err) res.json({success:false})
-    else res.json({success:true, posts: posts})
+    else{
+      res.json({success:true ,posts: posts})
+    }
+  })
+})
+
+router.post('/addRecommendation' ,  (req, res, next) => {
+  let post = new Post({
+    author: req.body.author,
+    body: req.body.body,
+    cover: req.body.cover,
+    advisor: req.body.advisor
+  })
+  Post.addPost(post, (err, post) => {
+    if(err) res.json({success:false})
+    else res.json({success: true, post:post})
+  })
+})
+
+router.get('/getAll' , (req, res, next) => {
+  Post.getAllPosts((err, posts) => {
+    if(err) res.json({success: false})
+    else res.json({success: true, posts:posts})
+  })
+})
+
+router.get('/getByAdvisor/:advisor', (req, res, next) => {
+  Post.getPostsByAdvisor(req.params.advisor, (err, posts) => {
+    if(err) res.json({success: false, message : err})
+    else res.json({success: true, posts: posts})
   })
 })
 
