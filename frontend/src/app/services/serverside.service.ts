@@ -32,4 +32,11 @@ export class ServersideService {
       .map(res => res.json())
   }
 
+  updateStatus(id){
+    let headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.get('http://localhost:3001/users/updateStatus/'+id , {headers:headers})
+      .map(res => res.json())
+  }
+
 }

@@ -64,6 +64,7 @@ router.post('/login' , (req, res, next) => {
 })
 
 router.get('/getRecommendations/:user', (req, res, next) => {
+  console.log('User : ' + req.params.user)
   Post.getPosts(req.params.user, (err, posts) => {
     if(err) res.json({success:false})
     else{

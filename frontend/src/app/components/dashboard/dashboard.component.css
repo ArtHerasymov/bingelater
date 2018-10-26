@@ -2,10 +2,33 @@
   margin-top:10%;
   width:50%;
   margin-left:25%;
+  overflow-y: scroll;
+  max-height: 100vh;
+  float:right;
 }
+
 
 .rec-container{
   background:white;
+}
+
+.advisors-wrapper{
+  width:20%;
+  float:left;
+}
+
+#logout-button{
+  float:right;
+}
+
+.rounded{
+  background-color: #FF94D1;
+  margin: 0 auto;
+}
+
+.advisor-label{
+  text-align: center;
+  font-size: 30px;
 }
 
 .btn-danger {
@@ -35,4 +58,64 @@ h1 {
 p {
   margin-top: 25px;
   margin-bottom: 25px;
+}
+
+.btn-success {
+  float:right;
+  font-family: Raleway-SemiBold;
+  font-size: 13px;
+  color: rgba(103, 192, 103, 0.75);
+  letter-spacing: 1px;
+  line-height: 15px;
+  border: 2px solid rgba(103, 192, 103, 0.75);
+  border-radius: 40px;
+  background: transparent;
+  transition: all 0.3s ease 0s;
+}
+
+.btn-success:hover {
+  color: #FFF;
+  background: rgb(103, 192, 103, 0.75);
+  border: 2px solid rgb(103, 192, 103, 0.75);
+}
+
+/* SEARCH HEADER */
+
+.search-header #custom-search-input {
+    margin:0;
+    margin-left:50%;
+    margin-bottom: 5%;;
+    padding: 0;
+}
+.search-header #custom-search-input .search-query {
+    padding-right: 4px;
+    padding-right: 4px \9;
+    padding-left: 15px;
+    padding-left: 15px \20;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    border: 3px solid #5686da;
+    height: 50px;
+    margin-bottom: 0;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+}
+.search-header #custom-search-input button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
+}
+
+.search-header .search-query:focus + button {
+    z-index: 3;
 }

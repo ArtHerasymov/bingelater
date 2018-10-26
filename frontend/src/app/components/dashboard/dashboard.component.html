@@ -1,3 +1,51 @@
+<button (click)="logout()" id="logout-button" class="btn btn-primary">Logout</button>
+
+<div class="container">
+    <div class="row search-header" style="margin-top:20px">
+        <div class="col-lg-8 col-md-8 col-xs-12">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="  search-query form-control" placeholder="Search" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">
+                            <span class=" fa fa-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-tabs">
+  <li (click)="onAllSelected()"><a>All</a></li>
+  <li (click)="onPendingSelected()"><a>Pending</a></li>
+  <li (click)="onSeenSelected()"><a>Seen</a></li>
+</ul>
+
+<div class="advisors-wrapper">
+  <div *ngIf="advisors.length != 0" class="advisors-container">
+    <div *ngFor="let advisor of advisors">
+      <div class="advisor-container">
+        <div class="rounded">
+          <button (click)="onAdvisorRemoved()" type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        <h1 class="advisor-label">{{advisor}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="rounded" *ngIf="filterSelected == true">
+  <button (click)="onAdvisorRemoved()" type="button" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h1 class="advisor-label">{{currentFilter}}</h1>
+</div>
+
+
 <div class="recs-wrapper">
   <div class="recs-container" *ngFor="let post of posts">
     <div class="rec-container" *ngIf="dataArrivalFlag != false">
@@ -5,10 +53,11 @@
         <div class="card-header">
           <a (click)="onAdvisorRequested(post.advisor)">{{post.advisor}}</a>
           <button class="btn btn-danger" (click)="onRemoveRecommendation(post._id)">Remove</button>
+          <button type="button" class="btn btn-success" (click)="onMarkAsSeen(post._id)">Mark as seen</button>
         </div>
         <div class="card-body">
           <blockquote class="blockquote mb-0">
-            <p>{{post.body}}.</p>
+            <p>{{post.body}}</p>
             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
           </blockquote>
         </div>
@@ -16,6 +65,3 @@
     </div>
   </div>
 </div>
-
-
-<button (click)="logout()" class="btn btn-primary">Logout</button>
